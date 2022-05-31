@@ -1,0 +1,17 @@
+/* Changes the body and p tags text color to #3D3D3D. Also the body and h2
+background color to #6D6D6D */
+$b_p_color: #3D3D3D;
+$b_h2_color: #6D6D6D;
+
+body {
+    color: $b_p_color;
+    background-color: $b_h2_color;
+}
+
+p {
+    color: $b_p_color;
+}
+
+h2 {
+    background-color: $b_h2_color;
+}
