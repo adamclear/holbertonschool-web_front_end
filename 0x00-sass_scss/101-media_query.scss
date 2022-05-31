@@ -1,0 +1,7 @@
+/* Changes h1 font size to 20px or 14px when screen size < 320px */
+h1 {
+    font-size: 20px;
+    @media screen and (max-width: 320px) {
+        font-size: 14px;
+    }
+}
