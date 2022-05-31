@@ -1,0 +1,9 @@
+/* Changes body tag to no margin or padding, body>p tags to margin 10px */
+body {
+    margin: 0;
+    padding: 0;
+
+    p {
+        margin: 10px;
+    }
+}
