@@ -1,0 +1,16 @@
+/* Changes margin left and right on body to 10px, margin l/r on div to 15px */
+@mixin bodyMixin {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+@mixin divMixin {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+body {
+    @include bodyMixin;
+}
+div {
+    @include divMixin;
+}
