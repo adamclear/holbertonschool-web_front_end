@@ -1,0 +1,10 @@
+/* Change font size on body to 14px, 16px on h1 in body, 12px on h1.smaller in body */
+body {
+    font-size: 14px;
+    h1 {
+        font-size: 16px;
+        &.smaller {
+            font-size: 12px;
+        }
+    }
+}
