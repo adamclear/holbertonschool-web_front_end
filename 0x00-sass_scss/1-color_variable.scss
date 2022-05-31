@@ -1,0 +1,10 @@
+/* Changes the body and p tags text color to #3D3D3D */
+$newColor: #3D3D3D;
+
+body {
+    color: $newColor;
+}
+
+p {
+    color: $newColor
+}
