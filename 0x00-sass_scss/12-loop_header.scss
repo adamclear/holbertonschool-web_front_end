@@ -1,0 +1,6 @@
+/* Creates header tags for H1-5 with font size equal to the number */
+@for $num from 1 through 5 {
+    h#{$num} {
+        font-size: $num + px;
+    }
+}
