@@ -1,6 +1,6 @@
 /* Creates class col-1-4 and sets width equal to 100% / number */
 @for $num from 1 through 4 {
-    col-#{$num} {
+    .col-#{$num} {
         width: 100% / $num;
     }
 }
