@@ -1,3 +1,57 @@
+.container {
+	display: flex;
+	height: 7rem;
+	width: 100%;
+	align-items: baseline;
+	justify-content: center;
+}
+
 .box {
 	display: flex;
+	color: white;
+	align-items: center;
+	justify-content: center;
+}
+
+/* individual box attributes */
+
+.box1 {
+	background-color: rgb(10, 224, 82);
+}
+
+.box2 {
+	background-color: rgb(17, 153, 231);
+}
+
+.box3 {
+	background-color: rgb(47, 60, 82);
+	width: 20%;
+	height: 100%;
+	font-size: 7.5vh;
+}
+
+.box4 {
+	background-color: rgb(134, 49, 151);
+}
+
+.box5 {
+	background-color: rgb(223, 118, 49);
+}
+
+/* multiple box attributes */
+
+/* endcap boxes */
+
+.box1, .box5{
+	width: 7%;
+	height: 45%;
+	font-size: 1.5vh;
+}
+
+/* middlecap boxes */
+
+.box2, .box4{
+	width: 10%;
+	height: 60%;
+	font-size: 3vh;
 }
