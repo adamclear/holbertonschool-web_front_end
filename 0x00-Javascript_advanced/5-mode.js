@@ -32,10 +32,6 @@ function main(changeMode) {
 	screamButton.innerHTML = "Scream Mode";
 	screamButton.addEventListener('click', screamMode);
 	div1.appendChild(screamButton);
-
-	let paragraph2 = document.createElement('h1');
-	paragraph2.innerHTML = "Here is some text to play with.";
-	document.body.append(paragraph2);
 }
 
 main(changeMode);
