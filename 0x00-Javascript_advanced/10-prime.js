@@ -18,6 +18,8 @@ function isPrime(num) {
 }
 
 start =  performance.now();
-countPrimeNumbers();
+for (z = 0; z < 100; z++) {
+	countPrimeNumbers();
+}
 end = performance.now();
-console.log(`Execution time of counting countPrimeNumbers was ${end - start} milliseconds.`);
+console.log(`Execution time of calculating countPrimeNumbers 100 times was ${end - start} milliseconds.`);
