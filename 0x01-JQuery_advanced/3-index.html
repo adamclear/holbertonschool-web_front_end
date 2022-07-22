@@ -16,13 +16,14 @@
 
             function createFamilyTree() {
                 $('body').append('<table>');
-                $('table').append('<tr class="table_head">');
+                $('table').append('<thead class="table_head">');
                 $('.table_head').append('<th class="first">',
                                         '<th class="last">');
                 $('.first').text("Firstname");
                 $('.last').text("Lastname");
 
-                $('table').append('<tr class="guillaume">',
+                $('table').append('<tbody>');
+                $('tbody').append('<tr class="guillaume">',
                                   '<tr class="paulette">',
                                   '<tr class="antoine">');
 
