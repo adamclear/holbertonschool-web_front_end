@@ -4,7 +4,7 @@
     <head>
 
         <meta charset="utf-8" />
-        <title>Task 11</title>
+        <title>Task 12</title>
 
 		<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
                 integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
@@ -22,11 +22,22 @@
 			buildForm();
             
 			function addPostRow(data) {
-				$('body').append(`<p>
+				$('body').append(`<p id="row-${data.id}">
+									<span id="delete">(delete)</span>
 								  	<span>
 										Post created with id ${data.id}, title: ${data.title}, author: ${data.author}
 									</span>
 								  </p>`);
+
+				$(`#row-${data.id} #delete`)
+					.click(() => {
+						deletePost(data.id);
+					});
+				$(`#row-${data.id} #delete`)
+					.css({
+						'cursor': 'pointer',
+						'background-color': 'orange'
+					});
 			}
 
 			function listPosts() {
@@ -75,6 +86,19 @@
 					.fail(() => {
 						alert('Error sending the POST query');
 					});
+			}
+
+			function deletePost(id) {
+				$.ajax({
+					url: `http://localhost:3000/posts/${id}`,
+					type: 'DELETE',
+					success: () => {
+						$(`#row-${id}`).remove();
+					},
+					error: () => {
+						alert('Post was not deleted');
+					}
+				});
 			}
 
         </script>
