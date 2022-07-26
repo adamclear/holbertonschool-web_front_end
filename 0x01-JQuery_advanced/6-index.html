@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+        <script type="application/javascript">
+            createFamilyTree();
+            createForm();
+
+            function createFamilyTree() {
+                $('body').append('<table>');
+                $('table').append('<thead>');
+                $('thead').append('<th class="first">', '<th class="last">');
+                $('th.first').text("Firstname");
+                $('th.last').text("Lastname");
+                $('table').append('<tbody>');
+            }
+
+            function addNewMember(firstName, lastName, position) {
+                if (position == 'before') {
+                    $('tbody').prepend(`<tr>
+                                       <td>${firstName}
+                                       <td>${lastName}
+                                       <td class="del">(x)`);
+                } else {
+                    $('tbody').append(`<tr>
+                                      <td>${firstName}
+                                      <td>${lastName}
+                                      <td class="del">(x)`);
+                }
+                $('.del')
+                    .css('background-color', 'orange')
+                    .css('cursor', 'pointer')
+                    .click(function () {
+                        $(this).parent().remove()
+                    });
+            }
+
+            function createForm () {
+                $('table').before(
+                    `<form>
+                        <input type="text" id="firstName">
+                        <input type="text" id="lastName">
+                        <select id="position">
+                            <option value="before">Before</option>
+                            <option value="after">After</option>
+                        </select>
+                        <input type="submit">
+                    </form>`
+                );
+
+                $('form')
+                    .submit(function () {
+                        addNewMember($('input').first().val(),
+                                     $('input:nth-of-type(2)').val(),
+                                     $('option:selected').val());
+                        return false;
+                    });
+            }
+        </script>
+
+    </body>
+
+</html>
