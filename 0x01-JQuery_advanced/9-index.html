@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+
+        <style>
+            .loading {
+                opacity: 0.2;
+            }
+        </style>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+                integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+                crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+                crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+        <script type="application/javascript">
+            createSearchForm();
+
+            function createSearchForm() {
+                $('body').append(`<form>
+                                    <input type="text">
+                                    <input type="submit">
+                                  </form>
+                                <ul id="content"></ul>
+                                <ul id="pagination"></ul>`);
+
+                $('#pagination').css({
+                    'display': 'flex',
+                    'list-style-type': 'none',
+                })
+                $('#pagination li').css({
+                    'margin': '10px'
+                })
+
+                $('form').submit(function () {
+                    $('#content').empty()
+                    queryWikipedia($('input').first().val())
+                    return false;
+                });
+            }
+
+            function addNewArticle (id, title, snippet) {
+                $('#content').append(`<li>
+                                    <p>
+                                        <span>${id}
+                                        <b>${title}
+                                    <p>${snippet}`);
+            }
+
+            function queryWikipedia(search, offset = 0) {
+                dislplayLoading(true);
+                $.ajax({
+                    type: 'GET',
+                    url: `https://en.wikipedia.org/w/api.php?origin=*&action=query&list=search&srsearch=${search}&format=json&sroffset=${offset}`,
+                    dataType: 'json',
+                    success: function (result) {
+                        search = result.query.search;
+                        for(page of search) {
+                            addNewArticle(page.pageid, page.title, page.snippet);
+                        }
+                        buildPagination(result.query.searchinfo.totalhits, 10, offset);
+                    }
+                });
+                setTimeout(() => {dislplayLoading(false)}, 1000);
+            }
+
+            function buildPagination(numberOfItems, itemsPerPage, currentOffset) {
+                const totalPages = Math.ceil(numberOfItems / itemsPerPage);
+                const currentPage = (currentOffset / itemsPerPage) + 1;
+                
+                console.log(totalPages);
+                $('#pagination').empty();
+                for (page = 1; page <= totalPages; page++) {
+                    $('#pagination').append(`<li>
+                                                <a href="#">${page}`);
+                    if(currentOffset) {
+                        $(`#pagination li:nth-of-type(${currentPage})`)
+                            .css('font-weight', 'bold');
+                    } else {
+                        $('#pagination li').first()
+                            .css('font-weight', 'bold');
+                    }
+                }
+
+                $('#pagination li').css({
+                    'margin-left': '10px',
+                })
+                $('#pagination a').css({
+                    'text-decoration': 'none',
+                    'color': 'black'
+                })
+
+                $('a').click(function () {
+                    $('#content').empty()
+                    queryWikipedia($('input').first().val(), ($(this).text() - 1) * itemsPerPage);
+                });
+            }
+
+            function dislplayLoading(loading) {
+                if (loading) {
+                    $('ul').first().wrap('<div class=loading></div>');
+                } else {
+                    $('ul').first().unwrap();
+                }
+            }
+        </script>
+
+    </body>
+
+</html>
