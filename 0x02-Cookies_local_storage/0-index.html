@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+	<head>
+
+		<meta charset="utf-8">
+		<title>Task 0</title>
+
+	</head>
+
+	<body>
+
+		<h1>Login to the website</h1>
+		<input type="text" id="firstname" placeholder="First Name">
+		<input type="text" id="email" placeholder="Email">
+		<button onclick="setCookies()">Log me in</button>
+		<h1>Cookies</h1>
+		<button onclick="showCookies()">Show me the cookies!</button>
+
+		<script>
+
+			function setCookies() {
+				document.cookie = `firstname=${document.getElementById('firstname').value}`;
+				document.cookie = `email=${document.getElementById('email').value}`;
+			}
+
+			function showCookies() {
+				const show_cookies = document.createElement('p');
+				let valList = [];
+				let cookieList = document.cookie.split(";");
+				for (x in cookieList) {
+					valList.push(cookieList[x].split("=")[1]);
+				}
+				show_cookies.innerHTML = `Cookies: ${valList.join(', ')}`;
+				document.body.append(show_cookies);
+			}
+
+		</script>
+
+	</body>
+
+</html>
