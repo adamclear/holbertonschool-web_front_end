@@ -25,7 +25,6 @@
 				let expires = `expires=${date.toUTCString()}`;
 				document.cookie = `firstname=${document.getElementById('firstname').value}; ${expires}`;
 				document.cookie = `email=${document.getElementById('email').value}; ${expires}`;
-				console.log(document.cookie);
 				hideForm();
 			}
 
